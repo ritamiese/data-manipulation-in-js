@@ -1079,15 +1079,15 @@ var data = [
   }
 ]
 
-// task 1.1 
+// task 1.1 - максимальный возраст + вывод имён пользователей, которые соотвествуют ему
 if (data && data[0]) {
-var max_age = Math.max.apply(Math,data.map(function(o){return o.age}));
-var names_filter = data.filter(user=>user.age===max_age);
-var names = names_filter.map(user=>user.name);
-var users_count=names.length;
+let max_age = Math.max.apply(Math,data.map(function(o){return o.age}));
+let names_filter = data.filter(user=>user.age===max_age);
+let names = names_filter.map(user=>user.name);
+let users_count=names.length;
 console.log(max_age, names, users_count); }
 
-// task 1.2
+// task 1.2 - индексы пользователей, которые старше 26, имеют букву а (латинская) в имени и количество друзей больше трёх
 if (data && data[0]) {
-var indexes = data.filter(user=>user.age>26 && user.name.match(/a/gi) && user.friends.length>3).map(user=>user.index); }
+let indexes = data.filter(user=>user.age>26 && user.name.match(/a/gi) && user.friends.length>3).map(user=>user.index); }
 console.log(indexes);
