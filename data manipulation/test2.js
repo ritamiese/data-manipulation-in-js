@@ -1951,30 +1951,30 @@ var data = [
       }
     ]
 
-    // task 2.1
+    // task 2.1 - количество активных пользователей
   
-      var active_users_count=data.filter(user=>user.isActive===true).length;
+    let active_users_count=data.filter(user=>user.isActive===true).length;
     // или не !=false, хз что сподручнее/лаконичнее 
     console.log(active_users_count);
 
-    // task 2.2
-    var active_men_count=data.filter(user=>user.isActive!=false && user.gender!="female").length;
+    // task 2.2 - количество активных пользователей мужского пола 
+    let active_men_count=data.filter(user=>user.isActive!=false && user.gender!="female").length;
     console.log(active_men_count);
 
-    // task 2.3
-    var arrayAge = data.filter(user=>user.isActive!=true && user.gender==="female").map(user=>user.age);
-    var avg_women_age = Math.round((arrayAge.reduce((prev, cur) => prev+cur, 0))/(arrayAge.length)); // можно преисполниться и отказаться от arrayAge, но мне кажется это чересчур со вложенностью будет, ывавыаыа
+    // task 2.3 - средний возраст пользователей женского пола
+    let arrayAge = data.filter(user=>user.isActive!=true && user.gender==="female").map(user=>user.age);
+    let avg_women_age = Math.round((arrayAge.reduce((prev, cur) => prev+cur, 0))/(arrayAge.length)); // можно преисполниться и отказаться от arrayAge, но мне кажется это чересчур со вложенностью будет, ывавыаыа
     console.log(avg_women_age);
 
-    // task 2.4
-    var womenUser = data.filter(user=>user.age<30 && user.gender!="male" ).map(user=>user.company);
-    var companiesArray = Array.from(new Set(womenUser));
-    var companies= companiesArray.map(item=> item.charAt(0).toUpperCase() + item.substr(1).toLowerCase());
+    // task 2.4 - список компаний, где есть сотрудница женского пола младше 30-ти лет, вывод с заглавной буквы 
+    let womenUser = data.filter(user=>user.age<30 && user.gender!="male" ).map(user=>user.company);
+    let companiesArray = Array.from(new Set(womenUser));
+    let companies= companiesArray.map(item=> item.charAt(0).toUpperCase() + item.substr(1).toLowerCase());
     console.log(companies);
 
-    //task 2.5
-    var fruits_array = data.filter(user=>user.favoriteFruit).map(user=>user.favoriteFruit);
-    var max = { item: 0, count: 0 };
+    //task 2.5 - самый популярный фрукт у пользователей, вывод на русском языке
+    let fruits_array = data.filter(user=>user.favoriteFruit).map(user=>user.favoriteFruit);
+    let max = { item: 0, count: 0 };
       for (let i = 0; i < fruits_array.length; i++) {
           let arrOccurences = fruits_array.filter(item => { return item === fruits_array[i] }).length;
           if (arrOccurences > max.count) {
@@ -1982,7 +1982,7 @@ var data = [
           }
       }
 
-      var favorite_fruit_in_russian = 0;
+      let favorite_fruit_in_russian = 0; // мне совершенно не нравится эта часть решения, потому что решение буквально в лоб, а на сложную регулярку силёнок не хватило
       if (max.item = 'strawberry') {
         favorite_fruit_in_russian = 'клубника'
       } else if (max.item = 'banana') {
@@ -1991,31 +1991,31 @@ var data = [
         favorite_fruit_in_russian = 'яблоко'
       }
   
-  console.log(favorite_fruit_in_russian);
+      console.log(favorite_fruit_in_russian);
 
 
-    //task 2.6
-    var n = Math.max.apply(0,(String(data.map(user=>user.greeting)).match(/\d{1,}/gi).map(Number)));
-    var regexp = new RegExp(`${n}`, 'gi');
-    var username = (data.filter(user=>user.greeting.match(regexp))).map(user=>user.name);
+    //task 2.6 - максимальное количество непрочитанных сообщений у пользователей + вывод имён пользователей с этим количеством непрочитанных сообщений
+    let n = Math.max.apply(0,(String(data.map(user=>user.greeting)).match(/\d{1,}/gi).map(Number))); // строка, которой я горжусь, если честно
+    let regexp = new RegExp(`${n}`, 'gi');
+    let username = (data.filter(user=>user.greeting.match(regexp))).map(user=>user.name);
   
     console.log(n, username);
     
 
 
-    //task 2.7
-    var date_array =  data.filter(user=>user.registered).map(user=>user.registered);
-    var norm_date = String(date_array).match(/\d{4}.\d{2}/gi);
-    var max = { item: 0, count: 0 };
-        for (var i = 0; i < norm_date.length; i++) {
-            var arrOccurences = norm_date.filter(item => { return item === norm_date[i] }).length;
+    //task 2.7 - вывод дня и года, когда зарегистрировалось большее число пользователей + непосредственно количество зарегистрированных в этот день
+    let date_array =  data.filter(user=>user.registered).map(user=>user.registered);
+    let norm_date = String(date_array).match(/\d{4}.\d{2}/gi);
+    let max = { item: 0, count: 0 };
+        for (let i = 0; i < norm_date.length; i++) {
+            let arrOccurences = norm_date.filter(item => { return item === norm_date[i] }).length;
             if (arrOccurences > max.count) {
                 max = { item: norm_date[i], count: norm_date.filter(item => { return item === norm_date[i] }).length };
             }
 
-            var max_year = Number((max.item).match(/^\d{4}/gi));
-            var max_month = Number((max.item).match(/\d{2}$/gi));
-            var max_count = max.count;
+            let max_year = Number((max.item).match(/^\d{4}/gi));
+            let max_month = Number((max.item).match(/\d{2}$/gi));
+            let max_count = max.count;
           }
       
             console.log(max_year, max_month, max_count);
